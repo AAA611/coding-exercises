@@ -27,11 +27,21 @@ export default class SnapshotSandbox {
    * 激活沙箱
    */
   active() {
-    // 记录当前的快照
+    // 快照对象
     this.windowSnapshot = {} as Window
-    // 遍历 window 对象赋值属性
+    // 遍历 window 对象赋值属性,记录 window 当前快照
     iter(window, (prop) => {
       this.windowSnapshot[prop] = window[prop]
+    })
+
+    // 除了要记录快照,还需要恢复之前的状态
+    Object.keys(this.modifyPropsMap).forEach(prop => {
+      window[prop] = this.modifyPropsMap[prop]
+    })
+
+    // 删除之前删除的属性
+    this.deletePropsSet.forEach(prop => {
+      delete window[prop]
     })
 
     this.sandboxRunning = true
