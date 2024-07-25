@@ -10,7 +10,7 @@ class Scheduler {
   }
 
   async add(promiseCreator) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       this.tasks.push(() => promiseCreator().then(resolve))
       this.start()
     })
