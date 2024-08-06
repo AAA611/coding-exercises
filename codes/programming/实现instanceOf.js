@@ -5,7 +5,7 @@ function myInstanceOf(ins, Ctor) {
     if (proto === Ctor.prototype) {
       return true
     }
-    proto = Object.getPrototypeOf(proto)
+    proto = Object.getPrototypeOf(proto) // ⭐ 注意这里
   }
 
   return false
