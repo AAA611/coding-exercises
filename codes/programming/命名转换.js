@@ -37,4 +37,12 @@ function transform2(s) {
 
 console.log(transform2(name));
 
-// TODO:其他相关的命名转换
+
+/**
+ * 命名转换：驼峰转 Kebab
+ * @param {*} str 
+ * @returns 
+ */
+function camelToKebab(str) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
